@@ -80,12 +80,18 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
-        'ENGINE': 'django.db.backends.mysql',  # MySQL engine
-        'NAME': 'lms',                # Your database name
-        'USER': 'root',                # MySQL user
-        'PASSWORD': '12345',        # MySQL password
-        'HOST': 'localhost',                   # Typically localhost
-        'PORT': '3306',                        # Default MySQL port
+        # 'ENGINE': 'django.db.backends.mysql',  # MySQL engine
+        # 'NAME': 'lms',                # Your database name
+        # 'USER': 'root',                # MySQL user
+        # 'PASSWORD': '12345',        # MySQL password
+        # 'HOST': 'localhost',                   # Typically localhost
+        # 'PORT': '3306',                        # Default MySQL port
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('DJANGO_DB_NAME', 'lms_db'),
+        'USER': os.getenv('DJANGO_DB_USER', 'root'),
+        'PASSWORD': os.getenv('DJANGO_DB_PASSWORD', 'mysecretpassword'),
+        'HOST': os.getenv('DJANGO_DB_HOST', 'db'),  # Service name from docker-compose
+        'PORT': os.getenv('DJANGO_DB_PORT', '3306'),
     }
 }
 
